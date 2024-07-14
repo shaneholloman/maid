@@ -7,53 +7,53 @@ import 'package:maid/ui/desktop/app.dart';
 import 'package:maid/ui/mobile/app.dart';
 import 'package:provider/provider.dart';
 
-void main() async {
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
-  AppPreferences appPreferences = await AppPreferences.last;
-  AppData appData = await AppData.last;
-  User user = await User.last;
-
   runApp(
-    MaidApp(
-      user: user, 
-      appPreferences: appPreferences, 
-      appData: appData
-    )
+    const MaidApp()
   );
 }
 
 class MaidApp extends StatelessWidget {
-  final AppPreferences appPreferences;
-  final AppData appData;
-  final User user;
-
-  const MaidApp({
-    super.key, 
-    required this.user, 
-    required this.appPreferences, 
-    required this.appData,
-  });
+  const MaidApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (context) => appPreferences),
-        ChangeNotifierProvider(create: (context) => appData),
-        ChangeNotifierProvider(create: (context) => user),
-        ChangeNotifierProvider(create: (context) => HuggingfaceSelection())
-      ],
-      child: Consumer<AppPreferences>(
-        builder: (context, appPreferences, child) {
-          if (appPreferences.isDesktop) {
-            return const DesktopApp();
-          } 
-          else {
-            return const MobileApp();
-          }
-        },
-      ),
+    return FutureBuilder(
+      future: getProviders(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return MultiProvider(
+            providers: snapshot.data!,
+            child: buildConsumer(),
+          );
+        } else {
+          return const CircularProgressIndicator();
+        }
+      },
+    );
+  }
+
+  Future<List<ChangeNotifierProvider>> getProviders() async {
+    return [
+      ChangeNotifierProvider.value(value: await AppPreferences.last),
+      ChangeNotifierProvider.value(value: await AppData.last),
+      ChangeNotifierProvider.value(value: await User.last),
+      ChangeNotifierProvider.value(value: HuggingfaceSelection())
+    ];
+  }
+
+  Widget buildConsumer() {
+    return Consumer<AppPreferences>(
+      builder: (context, appPreferences, child) {
+        if (appPreferences.isDesktop) {
+          return const DesktopApp();
+        } 
+        else {
+          return const MobileApp();
+        }
+      },
     );
   }
 }
