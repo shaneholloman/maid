@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:maid/classes/providers/session.dart';
 import 'package:maid/enumerators/large_language_model_type.dart';
-import 'package:maid/classes/providers/app_data.dart';
 import 'package:maid/ui/desktop/dropdowns/remote_model_dropdown.dart';
 import 'package:maid/ui/shared/dropdowns/llm_platform_dropdown.dart';
 import 'package:maid/ui/shared/groups/llama_cpp_model_controls.dart';
@@ -23,9 +23,9 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   Widget buildRow() {
-    return Consumer<AppData>(
-      builder: (context, appData, child) {
-        final model = appData.currentSession.model;
+    return Consumer<Session>(
+      builder: (context, session, child) {
+        final model = session.model;
 
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

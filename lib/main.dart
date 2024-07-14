@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:maid/classes/providers/app_data.dart';
 import 'package:maid/classes/providers/app_preferences.dart';
+import 'package:maid/classes/providers/character.dart';
 import 'package:maid/classes/providers/huggingface_selection.dart';
+import 'package:maid/classes/providers/session.dart';
 import 'package:maid/classes/providers/user.dart';
 import 'package:maid/ui/desktop/app.dart';
 import 'package:maid/ui/mobile/app.dart';
@@ -38,7 +39,8 @@ class MaidApp extends StatelessWidget {
   Future<List<ChangeNotifierProvider>> getProviders() async {
     return [
       ChangeNotifierProvider.value(value: await AppPreferences.last),
-      ChangeNotifierProvider.value(value: await AppData.last),
+      ChangeNotifierProvider.value(value: await Session.last),
+      ChangeNotifierProvider.value(value: await Character.last),
       ChangeNotifierProvider.value(value: await User.last),
       ChangeNotifierProvider.value(value: HuggingfaceSelection())
     ];
@@ -47,7 +49,7 @@ class MaidApp extends StatelessWidget {
   Widget buildConsumer() {
     return Consumer<AppPreferences>(
       builder: (context, appPreferences, child) {
-        if (appPreferences.isDesktop) {
+        if (appPreferences.isDesktop) { 
           return const DesktopApp();
         } 
         else {

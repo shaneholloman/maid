@@ -5,14 +5,16 @@ import 'dart:convert';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
-import 'package:maid/classes/providers/app_data.dart';
 import 'package:maid/classes/static/logger.dart';
 import 'package:image/image.dart';
 import 'package:maid/classes/static/utilities.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Character extends ChangeNotifier {
+  static List<Character> characters = [];
+
   File? _profile;
 
   Key _key = UniqueKey();
@@ -31,37 +33,37 @@ class Character extends ChangeNotifier {
 
   Map<String, dynamic> _cachedJson = {};
 
-  static Character of(BuildContext context) => AppData.of(context).currentCharacter;
+  static Character of(BuildContext context) => Provider.of<Character>(context, listen: false);
 
-  Character(VoidCallback? listener) {
-    if (listener != null) {
-      addListener(listener);
-    }
-
+  Character() {
     reset();
   }
 
-  Character.fromMap(VoidCallback? listener, Map<String, dynamic> inputJson) {
-    if (listener != null) {
-      addListener(listener);
-    }
-
+  Character.fromMap(Map<String, dynamic> inputJson) {
     fromMap(inputJson);
   }
 
   static Future<Character> get last async {
     final prefs = await SharedPreferences.getInstance();
 
-    String? lastCharacterString = prefs.getString("last_character");
+    String? charactersString = prefs.getString("characters");
 
-    Map<String, dynamic> lastCharacter = json.decode(lastCharacterString ?? "{}");
-    
-    return Character.fromMap(null, lastCharacter);
+    if (charactersString != null) {
+      characters = (json.decode(charactersString) as List).map((e) => Character.fromMap(e)).toList();
+    }
+    else if (characters.isEmpty) {
+      characters.add(Character());
+    }
+
+    return characters.first;
   }
 
-  Future<void> save() async {
+  static Future<void> save() async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString("last_character", json.encode(toMap()));
+    
+    final characterMaps = characters.map((e) => e.toMap()).toList();
+
+    await prefs.setString("characters", json.encode(characterMaps));
   }
 
   void notify() {

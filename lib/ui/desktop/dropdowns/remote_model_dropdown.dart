@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:maid/classes/providers/large_language_model.dart';
+import 'package:maid/classes/providers/session.dart';
 import 'package:maid/enumerators/large_language_model_type.dart';
-import 'package:maid/classes/providers/app_data.dart';
 import 'package:provider/provider.dart';
 
 class RemoteModelDropdown extends StatefulWidget {
@@ -31,15 +31,13 @@ class _RemoteModelDropdownState extends State<RemoteModelDropdown> {
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.center, 
-      child: Consumer<AppData>(
+      child: Consumer<Session>(
         builder: buildDropdown
       )
     );
   }
 
-  Widget buildDropdown(BuildContext context, AppData appData, Widget? child) {
-    final session = appData.currentSession;
-        
+  Widget buildDropdown(BuildContext context, Session session, Widget? child) { 
     if (canUseCache(context)) {
       return buildRow(context);
     } 
@@ -87,10 +85,10 @@ class _RemoteModelDropdownState extends State<RemoteModelDropdown> {
   }
 
   Widget buildText() {
-    return Consumer<AppData>(
-      builder: (context, appData, child) {
-        final text = appData.currentSession.model.name.isNotEmpty ? 
-          appData.currentSession.model.name : 'Select Model';
+    return Consumer<Session>(
+      builder: (context, session, child) {
+        final text = session.model.name.isNotEmpty ? 
+          session.model.name : 'Select Model';
 
         return Text(
           text,
@@ -127,15 +125,15 @@ class _RemoteModelDropdownState extends State<RemoteModelDropdown> {
   PopupMenuEntry<dynamic> buildPopupMenuEntry(BuildContext context, String modelName) {
     return PopupMenuItem(
       padding: EdgeInsets.zero,
-      child: Consumer<AppData>(
-        builder: (context, appData, child) {
+      child: Consumer<Session>(
+        builder: (context, session, child) {
           return ListTile(
             contentPadding: const EdgeInsets.symmetric(horizontal: 8.0),
             title: Text(modelName),
             onTap: () {
-              appData.currentSession.model.name = modelName;
+              session.model.name = modelName;
             },
-            tileColor: appData.currentSession.model.name == modelName ? Theme.of(context).colorScheme.secondary : null,
+            tileColor: session.model.name == modelName ? Theme.of(context).colorScheme.secondary : null,
           );
         }
       )

@@ -10,15 +10,17 @@ import 'package:maid/classes/providers/large_language_models/ollama_model.dart';
 import 'package:maid/classes/providers/large_language_models/open_ai_model.dart';
 import 'package:maid/enumerators/chat_role.dart';
 import 'package:maid/enumerators/large_language_model_type.dart';
-import 'package:maid/classes/providers/app_data.dart';
 import 'package:maid/classes/providers/character.dart';
 import 'package:maid/classes/providers/user.dart';
 import 'package:maid/classes/static/logger.dart';
 import 'package:maid/classes/chat_node.dart';
 import 'package:maid/classes/static/utilities.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Session extends ChangeNotifier {
+  static List<Session> sessions = [];
+
   LargeLanguageModel model = LlamaCppModel();
   ChatNodeTree chat = ChatNodeTree();
   Key _key = UniqueKey();
@@ -27,8 +29,15 @@ class Session extends ChangeNotifier {
   
   String _name = "";
 
-  String get name => _name;
+  String get name {
+    if (_name.isEmpty) {
+      return "New Chat $index";
+    }
 
+    return _name;
+  }
+
+  int get index => sessions.indexOf(this);
 
   set busy(bool value) {
     notifyListeners();
@@ -43,14 +52,10 @@ class Session extends ChangeNotifier {
     notifyListeners();
   }
 
-  static Session of(BuildContext context) => AppData.of(context).currentSession;
+  static Session of(BuildContext context) => Provider.of<Session>(context, listen: false);
 
-  Session(VoidCallback? listener, int index) {
-    if (listener != null) {
-      addListener(listener);
-    }
-
-    newSession(index);
+  Session() {
+    newSession();
   }
 
   Session.fromMap(VoidCallback? listener, Map<String, dynamic> inputJson) {
@@ -64,22 +69,28 @@ class Session extends ChangeNotifier {
   static Future<Session> get last async {
     final prefs = await SharedPreferences.getInstance();
 
-    String? lastSessionString = prefs.getString("last_session");
+    String? sessionsString = prefs.getString("sessions");
 
-    Map<String, dynamic> lastSession = json.decode(lastSessionString ?? "{}");
+    if (sessionsString != null) {
+      sessions = (json.decode(sessionsString) as List).map((e) => Session.fromMap(null, e)).toList();
+    }
+    else if (sessions.isEmpty) {
+      sessions.add(Session());
+    }
 
-    return Session.fromMap(null, lastSession);
+    return sessions.first;
   }
 
-  Future<void> save() async {
+  static Future<void> save() async {
     final prefs = await SharedPreferences.getInstance();
 
-    prefs.setString("last_session", json.encode(toMap()));
+    final sessionsMaps = sessions.map((e) => e.toMap()).toList();
+
+    await prefs.setString("sessions", json.encode(sessionsMaps));
   }
 
-  void newSession(int index) {
+  void newSession() {
     _key = UniqueKey();
-    _name = "New Chat${index <= 0 ? "" : " $index"}";
     chat = ChatNodeTree();
     model = LlamaCppModel(listener: notify);
     notifyListeners();
@@ -95,7 +106,7 @@ class Session extends ChangeNotifier {
 
   void fromMap(Map<String, dynamic> inputJson) {
     if (inputJson.isEmpty) {
-      newSession(0);
+      newSession();
       return;
     }
 
@@ -166,7 +177,7 @@ class Session extends ChangeNotifier {
 
     if (chat.root.children.isNotEmpty && 
         chat.root.children.first.content.isNotEmpty && 
-        _name.contains("New Chat")
+        _name.isEmpty
     ) {
       _name = chat.root.children.first.content;
     }
