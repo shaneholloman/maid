@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:maid/enumerators/large_language_model_type.dart';
-import 'package:maid/classes/providers/app_data.dart';
 import 'package:maid/classes/providers/session.dart';
 import 'package:maid/ui/shared/shaders/blade_runner_gradient_shader.dart';
 import 'package:provider/provider.dart';
@@ -24,13 +23,13 @@ class _LlmPlatformDropdownState extends State<LlmPlatformDropdown> {
   }
 
   Widget dropdownBuilder() {
-    return Consumer<AppData>(
-      builder: (context, appData, child) {
+    return Consumer<Session>(
+      builder: (context, session, child) {
         return Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              appData.currentSession.model.type.displayName,
+              session.model.type.displayName,
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 16,

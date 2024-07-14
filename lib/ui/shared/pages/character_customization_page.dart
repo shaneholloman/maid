@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:maid/classes/providers/app_data.dart';
 import 'package:maid/classes/providers/app_preferences.dart';
 import 'package:maid/classes/providers/character.dart';
 import 'package:maid/classes/providers/desktop_navigator.dart';
@@ -66,15 +65,13 @@ class _CharacterCustomizationPageState extends State<CharacterCustomizationPage>
           "Character Customization"
         ),
       ),
-      body: Consumer<AppData>(
+      body: Consumer<Character>(
         builder: buildBody,
       )
     );
   }
 
-  Widget buildBody(BuildContext context, AppData appData, Widget? child) {
-    final character = appData.currentCharacter;
-
+  Widget buildBody(BuildContext context, Character character, Widget? child) {
     if (regenerate) {
       nameController = TextEditingController(text: character.name);
       descriptionController = TextEditingController(text: character.description);

@@ -1,9 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:maid/classes/providers/app_data.dart';
 import 'package:maid/classes/providers/session.dart';
-import 'package:provider/provider.dart';
 
 class SessionTile extends StatefulWidget {
   final Session session;
@@ -25,12 +23,6 @@ class _SessionTileState extends State<SessionTile> {
   Widget build(BuildContext context) {
     controller.text = widget.session.name;
 
-    return Consumer<AppData>(
-      builder: buildGestureDetector,
-    );
-  }
-
-  Widget buildGestureDetector(BuildContext context, AppData appData, Widget? child) {
     return InkWell(
       onSecondaryTapUp: (TapUpDetails details) =>
         showContextMenu(details.globalPosition),
@@ -55,7 +47,7 @@ class _SessionTileState extends State<SessionTile> {
   void onTapUp(TapUpDetails details) {
     if (longPressTimer?.isActive ?? false) {
       longPressTimer?.cancel();
-      AppData.of(context).currentSession = widget.session;
+      Session.of(context).from(widget.session);
     }
   }  
 
@@ -72,7 +64,7 @@ class _SessionTileState extends State<SessionTile> {
       items: <PopupMenuEntry>[
         PopupMenuItem(
           onTap: () {  
-            AppData.of(context).removeSession(widget.session);
+            Session.sessions.remove(widget.session);
           },
           child: const Text('Delete'),
         ),
@@ -113,10 +105,8 @@ class _SessionTileState extends State<SessionTile> {
         ),
         FilledButton(
           onPressed: () => setState(() {
-            final appData = AppData.of(context);
-
-            if (widget.session == appData.currentSession) {
-              appData.currentSession.name = controller.text;
+            if (widget.session == Session.of(context)) {
+              Session.of(context).name = controller.text;
             }
 
             widget.session.name = controller.text;
