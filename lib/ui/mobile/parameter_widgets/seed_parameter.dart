@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:maid/classes/providers/large_language_model.dart';
-import 'package:maid/classes/providers/app_data.dart';
+import 'package:maid/classes/providers/session.dart';
 import 'package:provider/provider.dart';
 
 class SeedParameter extends StatelessWidget {
@@ -12,10 +12,8 @@ class SeedParameter extends StatelessWidget {
       text: LargeLanguageModel.of(context).seed.toString()
     );
 
-    return Consumer<AppData>(
-      builder: (context, appData, child) {
-        final session = appData.currentSession;
-        
+    return Consumer<Session>(
+      builder: (context, session, child) {
         return Column(
           children: [
             SwitchListTile(

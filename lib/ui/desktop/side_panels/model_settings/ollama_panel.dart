@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:maid/classes/providers/large_language_model.dart';
-import 'package:maid/classes/providers/app_data.dart';
+import 'package:maid/classes/providers/session.dart';
 import 'package:maid/ui/desktop/parameters/api_key_parameter.dart';
 import 'package:maid/ui/desktop/parameters/n_keep_parameter.dart';
 import 'package:maid/ui/desktop/parameters/penalize_nl_parameter.dart';
@@ -61,7 +61,7 @@ class OllamaPanel extends StatelessWidget {
             buildDivider(context),
             buildSwitchWrap(),
             buildDivider(context),
-            Consumer<AppData>(
+            Consumer<Session>(
               builder: buildGridView
             )
           ]
@@ -103,8 +103,8 @@ class OllamaPanel extends StatelessWidget {
     );
   }
 
-  Widget buildGridView(BuildContext context, AppData appData, Widget? child) {
-    final model = appData.currentSession.model;
+  Widget buildGridView(BuildContext context, Session session, Widget? child) {
+    final model = session.model;
 
     return GridView(
       gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(

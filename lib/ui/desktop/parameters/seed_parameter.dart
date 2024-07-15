@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:maid/classes/providers/large_language_model.dart';
-import 'package:maid/classes/providers/app_data.dart';
 import 'package:maid/classes/providers/session.dart';
 import 'package:provider/provider.dart';
 
@@ -16,16 +15,14 @@ class SeedParameter extends StatelessWidget {
           color: Theme.of(context).colorScheme.surfaceDim,
           borderRadius: BorderRadius.circular(8.0)
         ),
-        child: Consumer<AppData>(
+        child: Consumer<Session>(
           builder: buildColumn
         ),
       )
     );
   }
 
-  Widget buildColumn(BuildContext context, AppData appData, Widget? child) {
-    final session = appData.currentSession;
-
+  Widget buildColumn(BuildContext context, Session session, Widget? child) {
     TextEditingController controller = TextEditingController(
       text: LargeLanguageModel.of(context).seed.toString()
     );

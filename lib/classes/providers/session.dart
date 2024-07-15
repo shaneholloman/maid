@@ -66,6 +66,11 @@ class Session extends ChangeNotifier {
     fromMap(inputJson);
   }
 
+  void reset() {
+    newSession();
+    notifyListeners();
+  }
+
   static Future<Session> get last async {
     final prefs = await SharedPreferences.getInstance();
 

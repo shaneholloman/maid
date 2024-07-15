@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:maid/classes/providers/app_data.dart';
+import 'package:maid/classes/providers/character.dart';
 import 'package:maid/ui/shared/tiles/character_tile.dart';
 import 'package:maid/ui/shared/buttons/clear_sessions_button.dart';
 import 'package:maid/ui/shared/buttons/new_session_button.dart';
@@ -18,13 +18,13 @@ class HomeDrawer extends StatelessWidget {
       onTap: () {
         Navigator.pop(context);
       },
-      child: Consumer<AppData>(
+      child: Consumer<Character>(
         builder: drawerBuilder
       )
     );
   }
 
-  Widget drawerBuilder(BuildContext context, AppData appData, Widget? child) {
+  Widget drawerBuilder(BuildContext context, Character character, Widget? child) {
     return Drawer(
       semanticLabel: "Drawer Menu",
       backgroundColor: Theme.of(context).colorScheme.surface,
@@ -40,7 +40,7 @@ class HomeDrawer extends StatelessWidget {
           children: [
             Expanded(
               child: CharacterTile(
-                character: appData.currentCharacter,
+                character: character,
               )
             ),
             const SizedBox(height: 5.0),

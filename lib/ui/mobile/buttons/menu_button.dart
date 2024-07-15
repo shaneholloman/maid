@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:maid/classes/providers/large_language_model.dart';
 import 'package:maid/enumerators/large_language_model_type.dart';
-import 'package:maid/classes/providers/app_data.dart';
 import 'package:maid/classes/providers/session.dart';
 import 'package:provider/provider.dart';
 
@@ -29,9 +28,9 @@ class _MenuButtonState extends State<MenuButton> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<AppData>(
-      builder: (context, appData, child) {   
-        if (canUseCache(appData.currentSession)) {
+    return Consumer<Session>(
+      builder: (context, session, child) {   
+        if (canUseCache(session)) {
           return PopupMenuButton(
             tooltip: 'Open Menu',
             icon: const Icon(
@@ -42,10 +41,10 @@ class _MenuButtonState extends State<MenuButton> {
           );
         } 
         else {
-          lastModelType = appData.currentSession.model.type;
+          lastModelType = session.model.type;
           lastCheck = DateTime.now();
           return FutureBuilder(
-            future: appData.currentSession.model.options,
+            future: session.model.options,
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.done) {
                 options = snapshot.data as List<String>;
@@ -81,9 +80,9 @@ class _MenuButtonState extends State<MenuButton> {
   List<PopupMenuEntry<dynamic>> itemBuilder(BuildContext context) {
     List<PopupMenuEntry<dynamic>> modelOptions = options.map((String modelName) => PopupMenuItem(
       padding: EdgeInsets.zero,
-      child: Consumer<AppData>(
-          builder: (context, appData, child) {
-            final model = appData.currentSession.model;
+      child: Consumer<Session>(
+          builder: (context, session, child) {
+            final model = session.model;
             
             return ListTile(
               contentPadding: const EdgeInsets.symmetric(horizontal: 8.0),

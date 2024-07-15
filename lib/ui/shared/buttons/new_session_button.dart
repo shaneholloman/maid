@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:maid/classes/providers/app_data.dart';
+import 'package:maid/classes/providers/session.dart';
 
 /// A button widget that creates a new [Session].
 ///
@@ -11,10 +11,14 @@ class NewSessionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FilledButton(
-      onPressed: AppData.of(context).newSession,
+      onPressed: () => onPressed(context),
       child: const Text(
         "New Chat"
       ),
     );
+  }
+
+  void onPressed(BuildContext context) {
+    Session.sessions.add(Session());
   }
 }

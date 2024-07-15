@@ -4,7 +4,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:maid/enumerators/chat_role.dart';
 import 'package:maid/enumerators/large_language_model_type.dart';
-import 'package:maid/classes/providers/app_data.dart';
 import 'package:maid/classes/providers/session.dart';
 import 'package:maid/ui/shared/dialogs/missing_requirements_dialog.dart';
 import 'package:maid/classes/static/logger.dart';
@@ -83,15 +82,13 @@ class _ChatFieldState extends State<ChatField> {
   Widget build(BuildContext context) {
     return SafeArea(
       minimum: const EdgeInsets.all(8.0),
-      child: _buildRow(),
+      child: buildRow(),
     );
   }
 
-  Widget _buildRow() {
-    return Consumer<AppData>(
-      builder: (context, appData, child) {
-        final session = appData.currentSession;
-        
+  Widget buildRow() {
+    return Consumer<Session>(
+      builder: (context, session, child) {
         return Row(
           children: [
             if (!session.chat.tail.finalised &&

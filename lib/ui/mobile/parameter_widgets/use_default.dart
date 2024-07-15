@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:maid/classes/providers/app_data.dart';
+import 'package:maid/classes/providers/session.dart';
 import 'package:provider/provider.dart';
 
 class UseDefaultParameter extends StatelessWidget {
@@ -7,10 +7,8 @@ class UseDefaultParameter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<AppData>(
-      builder: (context, appData, child) {
-        final session = appData.currentSession;
-        
+    return Consumer<Session>(
+      builder: (context, session, child) {
         return SwitchListTile(
           title: const Text('Use Default Parameters'),
           value: session.model.useDefault,

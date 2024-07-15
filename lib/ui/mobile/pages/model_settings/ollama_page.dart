@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:maid/classes/providers/app_data.dart';
+import 'package:maid/classes/providers/session.dart';
 import 'package:maid/ui/mobile/layout/model_settings_app_bar.dart';
 import 'package:maid/ui/mobile/parameter_widgets/api_key_parameter.dart';
 import 'package:maid/ui/mobile/parameter_widgets/n_keep_parameter.dart';
@@ -37,10 +37,8 @@ class OllamaPage extends StatelessWidget {
     return Scaffold(
       appBar: const ModelSettingsAppBar(title: "Ollama Parameters"),
       body: SessionBusyOverlay(
-        child: Consumer<AppData>(
-          builder: (context, appData, child) {
-            final session = appData.currentSession;
-            
+        child: Consumer<Session>(
+          builder: (context, session, child) {
             SharedPreferences.getInstance().then((prefs) {
               prefs.setString("ollama_model", json.encode(session.model.toMap()));
             });

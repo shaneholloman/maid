@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:maid/classes/providers/app_data.dart';
 import 'package:maid/classes/providers/app_preferences.dart';
+import 'package:maid/classes/providers/character.dart';
+import 'package:maid/classes/providers/session.dart';
 import 'package:maid/classes/providers/user.dart';
 import 'package:maid/classes/static/logger.dart';
 import 'package:maid/ui/shared/layout/generic_app_bar.dart';
@@ -54,7 +55,8 @@ class _SettingsPageState extends State<SettingsPage> {
                 prefs.clear();
                 AppPreferences.of(context).reset();
                 User.of(context).reset();
-                AppData.of(context).reset();
+                Session.of(context).reset();
+                Character.of(context).reset();
                 setState(() {
                   Logger.clear();
                 });

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:maid/classes/providers/large_language_model.dart';
-import 'package:maid/classes/providers/app_data.dart';
+import 'package:maid/classes/providers/session.dart';
 import 'package:maid/ui/desktop/parameters/penalize_nl_parameter.dart';
 import 'package:maid/ui/desktop/parameters/template_parameter.dart';
 import 'package:maid/ui/desktop/parameters/frequency_penalty_parameter.dart';
@@ -86,10 +86,8 @@ class LlamaCppPanel extends StatelessWidget {
   }
 
   Widget buildModelName() {
-    return Consumer<AppData>(
-      builder: (context, appData, child) {
-        final session = appData.currentSession;
-
+    return Consumer<Session>(
+      builder: (context, session, child) {
         if (session.model.name.isEmpty) {
           return const SizedBox.shrink();
         }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:maid/classes/providers/app_data.dart';
+import 'package:maid/classes/providers/session.dart';
 import 'package:maid/ui/shared/tiles/switch_container.dart';
 import 'package:provider/provider.dart';
 
@@ -8,14 +8,12 @@ class PenalizeNlParameter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<AppData>(
+    return Consumer<Session>(
       builder: buildSwitchContainer
     );
   }
 
-  Widget buildSwitchContainer(BuildContext context, AppData appData, Widget? child) {
-    final session = appData.currentSession;
-        
+  Widget buildSwitchContainer(BuildContext context, Session session, Widget? child) {  
     return SwitchContainer(
       title: 'Penalize New Line',
       initialValue: session.model.penalizeNewline,

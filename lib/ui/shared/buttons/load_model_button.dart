@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:maid/classes/providers/huggingface_selection.dart';
 import 'package:maid/classes/providers/large_language_models/llama_cpp_model.dart';
-import 'package:maid/classes/providers/app_data.dart';
+import 'package:maid/classes/providers/session.dart';
 import 'package:provider/provider.dart';
 
 class LoadModelButton extends StatelessWidget {
@@ -102,13 +102,13 @@ class LoadModelButton extends StatelessWidget {
   }
 
   Widget buildConsumer() {
-    return Consumer<AppData>(
+    return Consumer<Session>(
       builder: rowBuilder
     );
   }
 
-  Widget rowBuilder(BuildContext context, AppData appData, Widget? child) {
-    final modelName = appData.currentSession.model.name;
+  Widget rowBuilder(BuildContext context, Session session, Widget? child) {
+    final modelName = session.model.name;
 
     const textStyle = TextStyle(
       color: Colors.white,

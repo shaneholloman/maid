@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:maid/classes/providers/character.dart';
 import 'package:maid/enumerators/chat_role.dart';
-import 'package:maid/classes/providers/app_data.dart';
 import 'package:maid/classes/providers/session.dart';
 import 'package:maid/ui/shared/dialogs/missing_requirements_dialog.dart';
 import 'package:maid/ui/shared/shaders/blade_runner_gradient_shader.dart';
@@ -31,11 +31,8 @@ class _ChatMessageWidgetState extends State<ChatMessageWidget> with SingleTicker
 
   @override
   Widget build(BuildContext context) {
-    return Consumer2<AppData, User>(
-      builder: (context, appData, user, child) {
-        final session = appData.currentSession;
-        final character = appData.currentCharacter;
-
+    return Consumer3<Session, Character, User>(
+      builder: (context, session, character, user, child) {
         node = session.chat.find(widget.hash)!;
 
         return Column(
@@ -159,10 +156,8 @@ class _ChatMessageWidgetState extends State<ChatMessageWidget> with SingleTicker
   }
 
   Widget branchSwitcher() {
-    return Consumer<AppData>(
-      builder: (BuildContext context, AppData appData, Widget? child) {
-        final session = appData.currentSession;
-        
+    return Consumer<Session>(
+      builder: (BuildContext context, Session session, Widget? child) {
         int currentIndex = session.chat.indexOf(widget.hash);
         int siblingCount = session.chat.siblingCountOf(widget.hash);
 
