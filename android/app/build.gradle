@@ -4,6 +4,10 @@ plugins {
     id "dev.flutter.flutter-gradle-plugin"
 }
 
+lintOptions {
+    checkReleaseBuilds false
+}
+
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
@@ -50,6 +54,15 @@ android {
         versionName = flutterVersionName
     }
 
+    splits {
+        abi {
+            enable true
+            reset()
+            include 'arm64-v8a', 'x86_64'  // Only include desired ABIs
+            universalApk true  // Set to true if you want a universal APK
+        }
+    }
+
     signingConfigs {
         release {
             if (keystoreProperties['storeFile']) {
@@ -94,13 +107,17 @@ flutter {
     source = "../.."
 }
 
-ext.abiCodes = ["x86_64": 1, "arm64-v8a": 2, "armeabi-v7a": 3]
+ext.abiCodes = [
+    'universal': 0,
+    'arm64-v8a': 1,
+    'x86_64': 2
+]
 import com.android.build.OutputFile
 android.applicationVariants.all { variant ->
-  variant.outputs.each { output ->
-    def abiVersionCode = project.ext.abiCodes.get(output.getFilter(OutputFile.ABI))
-    if (abiVersionCode != null) {
-      output.versionCodeOverride = variant.versionCode * 10 + abiVersionCode
+    variant.outputs.each { output ->
+        def abi = output.getFilter(OutputFile.ABI)
+        def baseVersionCode = variant.versionCode
+        def versionCodeOverride = abi ? project.ext.abiCodes.get(abi) : project.ext.abiCodes.get('universal')
+        output.versionCodeOverride = baseVersionCode * 10 + versionCodeOverride
     }
-  }
 }

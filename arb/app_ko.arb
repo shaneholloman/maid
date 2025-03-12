@@ -1,5 +1,6 @@
 {
     "@@locale": "ko",
+    "friendlyName": "한국어",
     "localeTitle": "로케일",
     "defaultLocale": "기본 로케일",
     "loading": "로딩 중...",
@@ -7,6 +8,8 @@
     "noModelSelected": "선택된 모델 없음",
     "noModelLoaded": "로드된 모델 없음",
     "delete": "삭제",
+    "import": "가져오기",
+    "export": "내보내기",
     "edit": "편집",
     "regenerate": "재생성",
     "chatsTitle": "채팅",

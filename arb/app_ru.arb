@@ -1,5 +1,6 @@
 {
     "@@locale": "ru",
+    "friendlyName": "Русский",
     "localeTitle": "Локаль",
     "defaultLocale": "Локаль по умолчанию",
     "loading": "Загрузка...",
@@ -7,6 +8,8 @@
     "noModelSelected": "Модель не выбрана",
     "noModelLoaded": "Модель не загружена",
     "delete": "Удалить",
+    "import": "Импорт",
+    "export": "Экспорт",
     "edit": "Редактировать",
     "regenerate": "Перегенерировать",
     "chatsTitle": "Чаты",

@@ -1,5 +1,6 @@
 {
     "@@locale": "zh",
+    "friendlyName": "中文",
     "localeTitle": "区域",
     "defaultLocale": "默认区域",
     "loading": "加载中...",
@@ -7,6 +8,8 @@
     "noModelSelected": "未选择模型",
     "noModelLoaded": "未加载模型",
     "delete": "删除",
+    "import": "导入",
+    "export": "导出",
     "edit": "编辑",
     "regenerate": "重新生成",
     "chatsTitle": "聊天",

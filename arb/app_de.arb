@@ -1,5 +1,6 @@
 {
     "@@locale": "de",
+    "friendlyName": "Deutsch",
     "localeTitle": "Sprache",
     "defaultLocale": "Standardsprache",
     "loading": "Laden...",
@@ -7,6 +8,8 @@
     "noModelSelected": "Kein Modell ausgewählt",
     "noModelLoaded": "Kein Modell geladen",
     "delete": "Löschen",
+    "import": "Importieren",
+    "export": "Exportieren",
     "edit": "Bearbeiten",
     "regenerate": "Neu generieren",
     "chatsTitle": "Chats",

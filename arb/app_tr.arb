@@ -1,5 +1,6 @@
 {
     "@@locale": "tr",
+    "friendlyName": "Türkçe",
     "localeTitle": "Yerel Ayar",
     "defaultLocale": "Varsayılan Yerel Ayar",
     "loading": "Yükleniyor...",
@@ -7,6 +8,8 @@
     "noModelSelected": "Model Seçilmedi",
     "noModelLoaded": "Model Yüklenmedi",
     "delete": "Sil",
+    "import": "İçe Aktar",
+    "export": "Dışa Aktar",
     "edit": "Düzenle",
     "regenerate": "Yeniden Oluştur",
     "chatsTitle": "Sohbetler",

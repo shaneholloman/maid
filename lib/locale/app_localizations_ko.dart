@@ -9,6 +9,9 @@ class AppLocalizationsKo extends AppLocalizations {
   AppLocalizationsKo([String locale = 'ko']) : super(locale);
 
   @override
+  String get friendlyName => '한국어';
+
+  @override
   String get localeTitle => '로케일';
 
   @override
@@ -28,6 +31,12 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get delete => '삭제';
+
+  @override
+  String get import => '가져오기';
+
+  @override
+  String get export => '내보내기';
 
   @override
   String get edit => '편집';

@@ -1,5 +1,6 @@
 {
     "@@locale": "fr",
+    "friendlyName": "Français",
     "localeTitle": "Langue",
     "defaultLocale": "Langue par défaut",
     "loading": "Chargement...",
@@ -7,6 +8,8 @@
     "noModelSelected": "Aucun modèle sélectionné",
     "noModelLoaded": "Aucun modèle chargé",
     "delete": "Supprimer",
+    "import": "Importer",
+    "export": "Exporter",
     "edit": "Modifier",
     "regenerate": "Régénérer",
     "chatsTitle": "Discussions",

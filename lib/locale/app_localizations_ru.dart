@@ -9,6 +9,9 @@ class AppLocalizationsRu extends AppLocalizations {
   AppLocalizationsRu([String locale = 'ru']) : super(locale);
 
   @override
+  String get friendlyName => 'Русский';
+
+  @override
   String get localeTitle => 'Локаль';
 
   @override
@@ -28,6 +31,12 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get delete => 'Удалить';
+
+  @override
+  String get import => 'Импорт';
+
+  @override
+  String get export => 'Экспорт';
 
   @override
   String get edit => 'Редактировать';

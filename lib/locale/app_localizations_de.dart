@@ -9,6 +9,9 @@ class AppLocalizationsDe extends AppLocalizations {
   AppLocalizationsDe([String locale = 'de']) : super(locale);
 
   @override
+  String get friendlyName => 'Deutsch';
+
+  @override
   String get localeTitle => 'Sprache';
 
   @override
@@ -28,6 +31,12 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get delete => 'Löschen';
+
+  @override
+  String get import => 'Importieren';
+
+  @override
+  String get export => 'Exportieren';
 
   @override
   String get edit => 'Bearbeiten';

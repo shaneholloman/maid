@@ -1,5 +1,6 @@
 {
     "@@locale": "ja",
+    "friendlyName": "日本語",
     "localeTitle": "ロケール",
     "defaultLocale": "デフォルトロケール",
     "loading": "読み込み中...",
@@ -7,6 +8,8 @@
     "noModelSelected": "モデルが選択されていません",
     "noModelLoaded": "モデルが読み込まれていません",
     "delete": "削除",
+    "import": "インポート",
+    "export": "エクスポート",
     "edit": "編集",
     "regenerate": "再生成",
     "chatsTitle": "チャット",

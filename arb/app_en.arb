@@ -1,5 +1,6 @@
 {
     "@@locale": "en",
+    "friendlyName": "English",
     "localeTitle": "Locale",
     "defaultLocale": "Default Locale",
     "loading": "Loading...",
@@ -7,6 +8,8 @@
     "noModelSelected": "No Model Selected",
     "noModelLoaded": "No Model Loaded",
     "delete": "Delete",
+    "import": "Import",
+    "export": "Export",
     "edit": "Edit",
     "regenerate": "Regenerate",
     "chatsTitle": "Chats",
