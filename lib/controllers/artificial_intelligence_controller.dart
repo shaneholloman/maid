@@ -1,12 +1,20 @@
 part of 'package:maid/main.dart';
 
 abstract class ArtificialIntelligenceController extends ChangeNotifier {
-  static Map<String, String> getTypes(BuildContext context) => {
-    'llama_cpp': AppLocalizations.of(context)!.llamaCpp,
-    'ollama': AppLocalizations.of(context)!.ollama,
-    'open_ai': AppLocalizations.of(context)!.openAI,
-    'mistral': AppLocalizations.of(context)!.mistral,
-  };
+  static Map<String, String> getTypes(BuildContext context) {
+    Map<String, String> types = {};
+
+    if (!kIsWeb) {
+      types['llama_cpp'] = AppLocalizations.of(context)!.llamaCpp;
+    }
+
+    types['ollama'] = AppLocalizations.of(context)!.ollama;
+    types['open_ai'] = AppLocalizations.of(context)!.openAI;
+    types['mistral'] = AppLocalizations.of(context)!.mistral;
+    types['anthropic'] = AppLocalizations.of(context)!.anthropic;
+
+    return types;
+  }
 
   bool _busy = false;
 
@@ -72,7 +80,7 @@ abstract class ArtificialIntelligenceController extends ChangeNotifier {
   static Future<ArtificialIntelligenceController> load([String? type]) async {
     final prefs = await SharedPreferences.getInstance();
 
-    type ??= prefs.getString('ai_type') ?? 'llama_cpp';
+    type ??= prefs.getString('ai_type') ?? (kIsWeb ? 'ollama' : 'llama_cpp');
 
     final contextString = prefs.getString(type);
 
@@ -90,6 +98,9 @@ abstract class ArtificialIntelligenceController extends ChangeNotifier {
           ..fromMap(contextMap);
       case 'mistral':
         return MistralController()
+          ..fromMap(contextMap);
+      case 'anthropic':
+        return AnthropicController()
           ..fromMap(contextMap);
       default:
         return LlamaCppController();
@@ -120,6 +131,7 @@ abstract class RemoteArtificialIntelligenceController extends ArtificialIntellig
     'ollama',
     'open_ai',
     'mistral',
+    'anthropic',
   ];
 
   String? _baseUrl;
@@ -192,7 +204,7 @@ abstract class RemoteArtificialIntelligenceController extends ArtificialIntellig
 }
 
 class LlamaCppController extends ArtificialIntelligenceController {
-  LlamaIsolated? _llama;
+  Llama? _llama;
   String _loadedHash = '';
 
   bool loading = false;
@@ -223,8 +235,8 @@ class LlamaCppController extends ArtificialIntelligenceController {
   void reloadModel([bool force = false]) async {
     if ((hash == _loadedHash && !force) || _model == null) return;
 
-    _llama = LlamaIsolated(
-      LlamaParams.fromMap({
+    _llama = Llama(
+      LlamaController.fromMap({
         'model_path': _model,
         'seed': math.Random().nextInt(1000000),
         'greedy': true,
@@ -702,4 +714,86 @@ class MistralController extends RemoteArtificialIntelligenceController {
   
   @override
   bool get canGetRemoteModels => true;
+}
+
+class AnthropicController extends RemoteArtificialIntelligenceController {
+  late anthropic.AnthropicClient _anthropicClient;
+
+  @override
+  String get type => 'anthropic';
+
+  @override
+  bool get canPrompt => _apiKey != null && _apiKey!.isNotEmpty && _model != null && _model!.isNotEmpty && !busy;
+
+  AnthropicController({
+    super.model, 
+    super.overrides,
+    super.baseUrl, 
+    super.apiKey
+  });
+
+  @override
+  Stream<String> prompt(List<ChatMessage> messages) async* {
+    assert(_apiKey != null, 'API Key is required');
+    assert(_model != null, 'Model is required');
+    busy = true;
+
+    if (_baseUrl == null || _baseUrl!.isEmpty) {
+      _baseUrl = 'https://api.anthropic.com/v1';
+    }
+
+    _anthropicClient = anthropic.AnthropicClient(
+      apiKey: _apiKey!,
+      baseUrl: _baseUrl,
+    );
+
+    final completionStream = _anthropicClient.createMessageStream(
+      request: anthropic.CreateMessageRequest(
+        model: anthropic.Model.model(anthropic.Models.values.firstWhere((model) => model.name == _model)),
+        maxTokens: _overrides['max_tokens'] ?? 1024,
+        messages: messages.toAnthropicMessages(),
+        stopSequences: _overrides['stop_sequences'],
+        temperature: _overrides['temperature'],
+        topK: _overrides['top_k'],
+        topP: _overrides['top_p'],
+        stream: true,
+      )
+    );
+
+    try {
+      await for (final completion in completionStream) {
+        if (completion is! anthropic.ContentBlockDeltaEvent) continue;
+
+        yield completion.delta.text;
+      }
+    }
+    catch (e) {
+      // This is expected when the user presses stop
+      if (!e.toString().contains('Connection closed')) {
+        rethrow;
+      }
+    }
+    finally {
+      busy = false;
+    }
+  }
+
+  @override
+  void stop() {
+    _anthropicClient.endSession();
+    busy = false;
+  }
+
+  @override
+  Future<bool> getModelOptions() async {
+    _modelOptions = anthropic.Models.values.map((model) => model.name).toList();
+
+    return true;
+  }
+  
+  @override
+  bool get canGetRemoteModels => true;
+  
+  @override
+  String getTypeLocale(BuildContext context) => AppLocalizations.of(context)!.anthropic;
 }
