@@ -58,7 +58,7 @@ class ChatController extends ChangeNotifier {
     );
 
     if (inputFile != null) {
-      final chatString = await File(inputFile.files.single.path!).readAsString();
+      final chatString = utf8.decode(inputFile.files.single.bytes!);
       final chatMap = jsonDecode(chatString);
       final chat = GeneralTreeNode.fromMap(chatMap, ChatMessage.fromMap);
 
@@ -76,10 +76,11 @@ class ChatController extends ChangeNotifier {
       dialogTitle: 'Export Chat',
       fileName: 'chat.json',
       type: FileType.custom,
-      allowedExtensions: ['json']
+      allowedExtensions: ['json'],
+      bytes: utf8.encode(chatString)
     );
 
-    if (outputFile != null) {
+    if (outputFile != null && !File(outputFile).existsSync()) {
       await File(outputFile).writeAsString(chatString);
     }
   }
