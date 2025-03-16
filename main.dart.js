@@ -101788,7 +101788,7 @@ case 1:return A.M(q,r)}})
 return A.N($async$vZ,r)},
 M(a){return new A.di(this.gaoi(),null,this.a.c,null)},
 aoj(a,b){var s=this,r=null,q=A.aQO(A.aJY(B.at,r,r,s.a.c.e)),p=A.aQO(A.aJY(B.aB,r,r,s.a.c.e)),o=s.a.c.f,n=s.Xx(),m=A.a([B.L5,B.Lm,B.Lu,B.Li],t.a9)
-return new A.CN(n,A.a_(["/settings",new A.ajJ(s),"/chat",new A.ajK(s),"/about",new A.ajL()],t.N,t.y_),"Maid",q,p,o,s.a.c.r,m,B.uM,!1,r)},
+return new A.CN(n,A.a_(["settings",new A.ajJ(s),"chat",new A.ajK(s),"about",new A.ajL()],t.N,t.y_),"Maid",q,p,o,s.a.c.r,m,B.uM,!1,r)},
 Xx(){var s=this.d,r=this.a
 return new A.BO(s,r.d,r.c,null)}}
 A.ajN.prototype={
