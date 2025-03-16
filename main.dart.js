@@ -101788,7 +101788,7 @@ case 1:return A.M(q,r)}})
 return A.N($async$vZ,r)},
 M(a){return new A.di(this.gaoi(),null,this.a.c,null)},
 aoj(a,b){var s=this,r=null,q=A.aQO(A.aJY(B.at,r,r,s.a.c.e)),p=A.aQO(A.aJY(B.aB,r,r,s.a.c.e)),o=s.a.c.f,n=s.Xx(),m=A.a([B.L5,B.Lm,B.Lu,B.Li],t.a9)
-return new A.CN(n,A.a_(["settings",new A.ajJ(s),"chat",new A.ajK(s),"about",new A.ajL()],t.N,t.y_),"Maid",q,p,o,s.a.c.r,m,B.uM,!1,r)},
+return new A.CN(n,A.a_(["/settings",new A.ajJ(s),"/chat",new A.ajK(s),"/about",new A.ajL()],t.N,t.y_),"Maid",q,p,o,s.a.c.r,m,B.uM,!1,r)},
 Xx(){var s=this.d,r=this.a
 return new A.BO(s,r.d,r.c,null)}}
 A.ajN.prototype={
@@ -101822,7 +101822,7 @@ s=q!=null?B.d.gaL(q.split("/")):A.ak(a,B.p,t.J).gmg()}return A.b8(s,r,B.aK,r,A.d
 A.D3.prototype={
 M(a){return A.Vd(!0,B.Q8,this.grv(),B.h,null,null,new A.amx(a),null,t.N)},
 oj(a){var s=null,r=t.J,q=t.N
-return A.a([A.ol(A.b8(A.ak(a,B.p,r).gk8(),s,s,s,s,s,s),s,s,"settings",q),A.ol(A.b8(A.ak(a,B.p,r).gkk(),s,s,s,s,s,s),s,s,"about",q)],t.Do)}}
+return A.a([A.ol(A.b8(A.ak(a,B.p,r).gk8(),s,s,s,s,s,s),s,s,"/settings",q),A.ol(A.b8(A.ak(a,B.p,r).gkk(),s,s,s,s,s,s),s,s,"/about",q)],t.Do)}}
 A.amx.prototype={
 $1(a){return A.iF(this.a,!1).a0e(a,t.X)},
 $S:19}
