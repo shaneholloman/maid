@@ -101822,7 +101822,7 @@ s=q!=null?B.d.gaL(q.split("/")):A.ak(a,B.p,t.J).gmg()}return A.b8(s,r,B.aK,r,A.d
 A.D3.prototype={
 M(a){return A.Vd(!0,B.Q8,this.grv(),B.h,null,null,new A.amx(a),null,t.N)},
 oj(a){var s=null,r=t.J,q=t.N
-return A.a([A.ol(A.b8(A.ak(a,B.p,r).gk8(),s,s,s,s,s,s),s,s,"/settings",q),A.ol(A.b8(A.ak(a,B.p,r).gkk(),s,s,s,s,s,s),s,s,"/about",q)],t.Do)}}
+return A.a([A.ol(A.b8(A.ak(a,B.p,r).gk8(),s,s,s,s,s,s),s,s,"settings",q),A.ol(A.b8(A.ak(a,B.p,r).gkk(),s,s,s,s,s,s),s,s,"about",q)],t.Do)}}
 A.amx.prototype={
 $1(a){return A.iF(this.a,!1).a0e(a,t.X)},
 $S:19}
