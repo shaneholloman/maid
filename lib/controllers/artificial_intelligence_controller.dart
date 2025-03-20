@@ -12,6 +12,7 @@ abstract class ArtificialIntelligenceController extends ChangeNotifier {
     types['open_ai'] = AppLocalizations.of(context)!.openAI;
     types['mistral'] = AppLocalizations.of(context)!.mistral;
     types['anthropic'] = AppLocalizations.of(context)!.anthropic;
+    types['google_gemini'] = AppLocalizations.of(context)!.googleGemini;
 
     return types;
   }
@@ -102,6 +103,9 @@ abstract class ArtificialIntelligenceController extends ChangeNotifier {
       case 'anthropic':
         return AnthropicController()
           ..fromMap(contextMap);
+      case 'google_gemini':
+        return GoogleGeminiController()
+          ..fromMap(contextMap);
       default:
         return LlamaCppController();
     }
@@ -132,6 +136,7 @@ abstract class RemoteArtificialIntelligenceController extends ArtificialIntellig
     'open_ai',
     'mistral',
     'anthropic',
+    'google_gemini',
   ];
 
   String? _baseUrl;
@@ -154,6 +159,16 @@ abstract class RemoteArtificialIntelligenceController extends ArtificialIntellig
     notifyListeners();
   }
 
+  bool _customModel;
+
+  bool get customModel => _customModel;
+
+  set customModel(bool newCustomModel) {
+    _customModel = newCustomModel;
+    save();
+    notifyListeners();
+  }
+
   String get connectionHash => (_baseUrl ?? '').hash + (_apiKey ?? '').hash;
 
   bool get canGetRemoteModels;
@@ -166,8 +181,9 @@ abstract class RemoteArtificialIntelligenceController extends ArtificialIntellig
     super.model, 
     super.overrides,
     String? baseUrl, 
-    String? apiKey
-  }) : _baseUrl = baseUrl, _apiKey = apiKey;
+    String? apiKey,
+    bool customModel = false
+  }) : _baseUrl = baseUrl, _apiKey = apiKey, _customModel = customModel;
 
   @override
   Map<String, dynamic> toMap() => {
@@ -175,6 +191,7 @@ abstract class RemoteArtificialIntelligenceController extends ArtificialIntellig
     'overrides': _overrides,
     'base_url': _baseUrl,
     'api_key': _apiKey,
+    'custom_model': _customModel,
   };
 
   @override
@@ -183,6 +200,7 @@ abstract class RemoteArtificialIntelligenceController extends ArtificialIntellig
     _overrides = map['overrides'] ?? {};
     _baseUrl = map['base_url'];
     _apiKey = map['api_key'];
+    _customModel = map['custom_model'] ?? false;
     save();
     notifyListeners();
   }
@@ -195,6 +213,7 @@ abstract class RemoteArtificialIntelligenceController extends ArtificialIntellig
     _overrides = {};
     _baseUrl = null;
     _apiKey = null;
+    _customModel = false;
     notifyListeners();
 
     final prefs = await SharedPreferences.getInstance();
@@ -796,4 +815,115 @@ class AnthropicController extends RemoteArtificialIntelligenceController {
   
   @override
   String getTypeLocale(BuildContext context) => AppLocalizations.of(context)!.anthropic;
+}
+////
+
+//Google gemini
+class GoogleGeminiController extends RemoteArtificialIntelligenceController {
+  late http.Client _httpClient;
+
+  @override
+  String get type => 'google_gemini';
+
+  @override
+  bool get canPrompt => _apiKey != null && _apiKey!.isNotEmpty && !busy;
+  
+  @override
+  bool get canGetRemoteModels => true;
+
+  GoogleGeminiController({
+    super.model,
+    super.overrides,
+    super.baseUrl,
+    super.apiKey,
+  }) {
+    _httpClient = http.Client();
+  }
+
+@override
+Stream<String> prompt(List<ChatMessage> messages) async* {
+  assert(apiKey != null, 'API Key is required');
+  assert(model != null && model!.isNotEmpty, 'Model name is required');
+  busy = true;
+
+  final url = Uri.parse(
+    '${baseUrl ?? "https://generativelanguage.googleapis.com/v1beta/models/$model:generateContent"}?key=$apiKey',
+  );
+
+  // Construct the request body, filtering out invalid or empty messages
+  final requestBody = jsonEncode({
+    "contents": messages
+        .where((message) =>
+            message.role != 'system' && // Exclude system messages
+            message.content.isNotEmpty) 
+        .map((message) {
+      return {
+        "role": message.role, 
+        "parts": [
+          {"text": message.content}
+        ]
+      };
+    }).toList(),
+  });
+
+  try {
+    // Send HTTP POST request
+    final response = await _httpClient.post(
+      url,
+      headers: {"Content-Type": "application/json"},
+      body: requestBody,
+    );
+
+    if (response.statusCode == 200) {
+      final responseData = jsonDecode(response.body);
+
+      // Navigate to the candidates array
+      if (responseData['candidates'] != null && responseData['candidates'] is List) {
+        for (final candidate in responseData['candidates']) {
+          if (candidate['content'] != null &&
+              candidate['content']['parts'] != null &&
+              candidate['content']['parts'] is List) {
+            for (final part in candidate['content']['parts']) {
+              if (part['text'] != null) {
+
+                yield part['text']; // Yield the part text for display
+              } else {
+                throw Exception('Part text is null or missing!');
+              }
+            }
+          } else {
+            throw Exception('Content parts are null or not a list!');
+          }
+        }
+      } else {
+        throw Exception('Candidates are null or not a list!');
+      }
+    } else {
+      throw Exception('Google Gemini API Error: ${response.body}');
+    }
+  } catch (e) {
+    rethrow;
+  } finally {
+    busy = false;
+  }
+}
+
+
+
+  @override
+  void stop() {
+
+    busy = false;
+  }
+
+  @override
+  Future<bool> getModelOptions() async {
+    // Google Gemini model listing
+    _modelOptions = ["gemini-2.0-flash","gemini-2.0-pro-exp-02-05","gemini-1.5-pro","imagen-3.0-generate-002","gemini-2.0-flash-lite","gemini-1.5-flash"];
+    return true;
+  }
+
+  @override
+  String getTypeLocale(BuildContext context) =>
+      AppLocalizations.of(context)!.googleGemini;
 }

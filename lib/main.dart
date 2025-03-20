@@ -68,8 +68,9 @@ part 'widgets/settings/user_settings.dart';
 
 part 'widgets/text_fields/api_key_text_field.dart';
 part 'widgets/text_fields/base_url_text_field.dart';
-part 'widgets/text_fields/prompt_field.dart';
 part 'widgets/text_fields/listenable_text_field.dart';
+part 'widgets/text_fields/prompt_field.dart';
+part 'widgets/text_fields/remote_model_text_field.dart';
 
 part 'widgets/code_box.dart';
 
@@ -95,6 +96,7 @@ class Maid extends StatefulWidget {
   @override
   State<Maid> createState() => MaidState();
 }
+
 
 class MaidState extends State<Maid> {
   ArtificialIntelligenceController aiController = LlamaCppController();
@@ -129,7 +131,7 @@ class MaidState extends State<Maid> {
     final appBarTheme = AppBarTheme(
       elevation: 0.0,
       backgroundColor: colorScheme.surface,
-      surfaceTintColor: Colors.transparent,
+      surfaceTintColor: Colors.transparent, 
     );
 
     final inputDecorationTheme = InputDecorationTheme(
