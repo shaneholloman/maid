@@ -45982,7 +45982,7 @@ A.afM.prototype={
 vh(a,b,c,d,e,f){return this.axI(a,!1,c,d,e,f)},
 a0z(a,b,c,d){return this.vh(a,b,null,c,null,d)},
 axH(a,b,c,d,e){return this.vh(a,b,null,c,d,e)},
-axG(a,b){return this.vh(!0,!1,a,null,null,b)},
+axG(a,b,c){return this.vh(!0,!1,a,b,null,c)},
 axI(a,b,c,d,e,f){var s=0,r=A.O(t.fW),q,p=this,o,n,m,l,k,j,i,h,g
 var $async$vh=A.C(function(a0,a1){if(a0===1)return A.L(a1,r)
 while(true)switch(s){case 0:g={}
@@ -101980,7 +101980,7 @@ A.un.prototype={
 Em(){var s=0,r=A.O(t.H),q=this,p,o,n
 var $async$Em=A.C(function(a,b){if(a===1)return A.L(b,r)
 while(true)switch(s){case 0:s=2
-return A.F($.Bw.bB().a0z(!1,!1,"Load Model File",B.P6),$async$Em)
+return A.F($.Bw.bB().a0z(!1,!1,"Pick User Image",B.P6),$async$Em)
 case 2:n=b
 if(n!=null){p=n.a
 o=J.aJ(p)
@@ -102026,7 +102026,7 @@ this.shX(l!=null&&B.e.jk(l).length!==0?p+("### Message Example\n\n"+A.XD(l)+"\n\
 Ej(){var s=0,r=A.O(t.H),q,p=this,o,n,m,l
 var $async$Ej=A.C(function(a,b){if(a===1)return A.L(b,r)
 while(true)switch(s){case 0:s=3
-return A.F($.Bw.bB().a0z(!1,!1,"Load Model File",B.q0),$async$Ej)
+return A.F($.Bw.bB().a0z(!1,!1,"Pick Assistant Image",B.q0),$async$Ej)
 case 3:l=b
 if(l!=null){o=l.a
 n=J.aJ(o)
@@ -102941,7 +102941,7 @@ this.P()},
 E8(){var s=0,r=A.O(t.H),q=this,p,o
 var $async$E8=A.C(function(a,b){if(a===1)return A.L(b,r)
 while(true)switch(s){case 0:s=2
-return A.F($.Bw.bB().axG(A.a(["json"],t.s),B.lw),$async$E8)
+return A.F($.Bw.bB().axG(A.a(["json"],t.s),"Import Chat",B.lw),$async$E8)
 case 2:o=b
 if(o!=null){p=J.z3(o.a).c
 p.toString
