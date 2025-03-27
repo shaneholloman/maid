@@ -149,43 +149,34 @@ class AppLocalizationsIt extends AppLocalizations {
   String get anthropic => 'Anthropic';
 
   @override
-  String get googleGemini => 'Google Gemini';
+  String get gemini => 'Gemini';
+
+  @override
+  String get modelParameters => 'Parametri del modello';
+
+  @override
+  String get addParameter => 'Aggiungi parametro';
+
+  @override
+  String get removeParameter => 'Rimuovi parametro';
+
+  @override
+  String get saveParameters => 'Salva parametri';
+
+  @override
+  String get importParameters => 'Importa parametri';
+
+  @override
+  String get exportParameters => 'Esporta parametri';
 
   @override
   String get selectAiEcosystem => 'Seleziona ecosistema IA';
-
-  @override
-  String get selectOverrideType => 'Seleziona tipo di override';
 
   @override
   String get selectRemoteModel => 'Seleziona modello remoto';
 
   @override
   String get selectThemeMode => 'Seleziona modalità tema dell\'app';
-
-  @override
-  String get overrideTypeString => 'Stringa';
-
-  @override
-  String get overrideTypeInteger => 'Intero';
-
-  @override
-  String get overrideTypeDouble => 'Decimale';
-
-  @override
-  String get overrideTypeBoolean => 'Booleano';
-
-  @override
-  String get inferanceOverrides => 'Override di inferenza';
-
-  @override
-  String get addOverride => 'Aggiungi override';
-
-  @override
-  String get saveOverride => 'Salva override';
-
-  @override
-  String get deleteOverride => 'Elimina override';
 
   @override
   String get themeMode => 'Modalità tema';

@@ -149,43 +149,34 @@ class AppLocalizationsJa extends AppLocalizations {
   String get anthropic => 'Anthropic';
 
   @override
-  String get googleGemini => 'Google Gemini';
+  String get gemini => 'Gemini';
+
+  @override
+  String get modelParameters => 'モデルパラメータ';
+
+  @override
+  String get addParameter => 'パラメータを追加';
+
+  @override
+  String get removeParameter => 'パラメータを削除';
+
+  @override
+  String get saveParameters => 'パラメータを保存';
+
+  @override
+  String get importParameters => 'パラメータをインポート';
+
+  @override
+  String get exportParameters => 'パラメータをエクスポート';
 
   @override
   String get selectAiEcosystem => 'AIエコシステムを選択';
-
-  @override
-  String get selectOverrideType => 'オーバーライドの種類を選択';
 
   @override
   String get selectRemoteModel => 'リモートモデルを選択';
 
   @override
   String get selectThemeMode => 'アプリのテーマモードを選択';
-
-  @override
-  String get overrideTypeString => '文字列';
-
-  @override
-  String get overrideTypeInteger => '整数';
-
-  @override
-  String get overrideTypeDouble => '小数';
-
-  @override
-  String get overrideTypeBoolean => 'ブール';
-
-  @override
-  String get inferanceOverrides => '推論オーバーライド';
-
-  @override
-  String get addOverride => 'オーバーライドを追加';
-
-  @override
-  String get saveOverride => 'オーバーライドを保存';
-
-  @override
-  String get deleteOverride => 'オーバーライドを削除';
 
   @override
   String get themeMode => 'テーマモード';

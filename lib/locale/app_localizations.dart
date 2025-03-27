@@ -389,23 +389,53 @@ abstract class AppLocalizations {
   /// **'Anthropic'**
   String get anthropic;
 
-  /// No description provided for @googleGemini.
+  /// No description provided for @gemini.
   ///
   /// In en, this message translates to:
-  /// **'Google Gemini'**
-  String get googleGemini;
+  /// **'Gemini'**
+  String get gemini;
+
+  /// No description provided for @modelParameters.
+  ///
+  /// In en, this message translates to:
+  /// **'Model Parameters'**
+  String get modelParameters;
+
+  /// No description provided for @addParameter.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Parameter'**
+  String get addParameter;
+
+  /// No description provided for @removeParameter.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove Parameter'**
+  String get removeParameter;
+
+  /// No description provided for @saveParameters.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Parameters'**
+  String get saveParameters;
+
+  /// No description provided for @importParameters.
+  ///
+  /// In en, this message translates to:
+  /// **'Import Parameters'**
+  String get importParameters;
+
+  /// No description provided for @exportParameters.
+  ///
+  /// In en, this message translates to:
+  /// **'Export Parameters'**
+  String get exportParameters;
 
   /// No description provided for @selectAiEcosystem.
   ///
   /// In en, this message translates to:
   /// **'Select AI Ecosystem'**
   String get selectAiEcosystem;
-
-  /// No description provided for @selectOverrideType.
-  ///
-  /// In en, this message translates to:
-  /// **'Select Override Type'**
-  String get selectOverrideType;
 
   /// No description provided for @selectRemoteModel.
   ///
@@ -418,54 +448,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Select App Theme Mode'**
   String get selectThemeMode;
-
-  /// No description provided for @overrideTypeString.
-  ///
-  /// In en, this message translates to:
-  /// **'String'**
-  String get overrideTypeString;
-
-  /// No description provided for @overrideTypeInteger.
-  ///
-  /// In en, this message translates to:
-  /// **'Integer'**
-  String get overrideTypeInteger;
-
-  /// No description provided for @overrideTypeDouble.
-  ///
-  /// In en, this message translates to:
-  /// **'Double'**
-  String get overrideTypeDouble;
-
-  /// No description provided for @overrideTypeBoolean.
-  ///
-  /// In en, this message translates to:
-  /// **'Bool'**
-  String get overrideTypeBoolean;
-
-  /// No description provided for @inferanceOverrides.
-  ///
-  /// In en, this message translates to:
-  /// **'Inference Overrides'**
-  String get inferanceOverrides;
-
-  /// No description provided for @addOverride.
-  ///
-  /// In en, this message translates to:
-  /// **'Add Override'**
-  String get addOverride;
-
-  /// No description provided for @saveOverride.
-  ///
-  /// In en, this message translates to:
-  /// **'Save Override'**
-  String get saveOverride;
-
-  /// No description provided for @deleteOverride.
-  ///
-  /// In en, this message translates to:
-  /// **'Delete Override'**
-  String get deleteOverride;
 
   /// No description provided for @themeMode.
   ///

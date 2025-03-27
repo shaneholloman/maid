@@ -149,43 +149,34 @@ class AppLocalizationsTr extends AppLocalizations {
   String get anthropic => 'Anthropic';
 
   @override
-  String get googleGemini => 'Google Gemini';
+  String get gemini => 'Gemini';
+
+  @override
+  String get modelParameters => 'Model Parametreleri';
+
+  @override
+  String get addParameter => 'Parametre Ekle';
+
+  @override
+  String get removeParameter => 'Parametreyi Kaldır';
+
+  @override
+  String get saveParameters => 'Parametreleri Kaydet';
+
+  @override
+  String get importParameters => 'Parametreleri İçe Aktar';
+
+  @override
+  String get exportParameters => 'Parametreleri Dışa Aktar';
 
   @override
   String get selectAiEcosystem => 'Yapay Zeka Ekosistemini Seç';
-
-  @override
-  String get selectOverrideType => 'Geçersiz Kılma Türünü Seç';
 
   @override
   String get selectRemoteModel => 'Uzak Modeli Seç';
 
   @override
   String get selectThemeMode => 'Uygulama Tema Modunu Seç';
-
-  @override
-  String get overrideTypeString => 'Dize';
-
-  @override
-  String get overrideTypeInteger => 'Tamsayı';
-
-  @override
-  String get overrideTypeDouble => 'Ondalık';
-
-  @override
-  String get overrideTypeBoolean => 'Bool';
-
-  @override
-  String get inferanceOverrides => 'Çıkarım Geçersiz Kılmaları';
-
-  @override
-  String get addOverride => 'Geçersiz Kılma Ekle';
-
-  @override
-  String get saveOverride => 'Geçersiz Kılmayı Kaydet';
-
-  @override
-  String get deleteOverride => 'Geçersiz Kılmayı Sil';
 
   @override
   String get themeMode => 'Tema Modu';

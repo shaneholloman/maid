@@ -149,43 +149,34 @@ class AppLocalizationsFr extends AppLocalizations {
   String get anthropic => 'Anthropic';
 
   @override
-  String get googleGemini => 'Google Gemini';
+  String get gemini => 'Gemini';
+
+  @override
+  String get modelParameters => 'Paramètres du modèle';
+
+  @override
+  String get addParameter => 'Ajouter un paramètre';
+
+  @override
+  String get removeParameter => 'Supprimer le paramètre';
+
+  @override
+  String get saveParameters => 'Enregistrer les paramètres';
+
+  @override
+  String get importParameters => 'Importer les paramètres';
+
+  @override
+  String get exportParameters => 'Exporter les paramètres';
 
   @override
   String get selectAiEcosystem => 'Sélectionner l\'écosystème IA';
-
-  @override
-  String get selectOverrideType => 'Sélectionner le type d\'écrasement';
 
   @override
   String get selectRemoteModel => 'Sélectionner un modèle distant';
 
   @override
   String get selectThemeMode => 'Sélectionner le mode du thème';
-
-  @override
-  String get overrideTypeString => 'Chaîne';
-
-  @override
-  String get overrideTypeInteger => 'Entier';
-
-  @override
-  String get overrideTypeDouble => 'Double';
-
-  @override
-  String get overrideTypeBoolean => 'Booléen';
-
-  @override
-  String get inferanceOverrides => 'Remplacements d\'inférence';
-
-  @override
-  String get addOverride => 'Ajouter un remplacement';
-
-  @override
-  String get saveOverride => 'Enregistrer le remplacement';
-
-  @override
-  String get deleteOverride => 'Supprimer le remplacement';
 
   @override
   String get themeMode => 'Mode du thème';

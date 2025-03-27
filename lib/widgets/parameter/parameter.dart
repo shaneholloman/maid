@@ -1,17 +1,17 @@
 part of 'package:maid/main.dart';
 
-class Override extends StatefulWidget {
+class Parameter extends StatefulWidget {
   final String? overrideKey;
   final dynamic overrideValue;
   final void Function(String, [String?, dynamic]) onChange;
 
-  const Override({super.key, this.overrideKey, this.overrideValue, required this.onChange});
+  const Parameter({super.key, this.overrideKey, this.overrideValue, required this.onChange});
 
   @override
-  State<StatefulWidget> createState() => OverrideState();
+  State<StatefulWidget> createState() => ParameterState();
 }
 
-class OverrideState extends State<Override> {
+class ParameterState extends State<Parameter> {
   TextEditingController keyController = TextEditingController();
   TextEditingController valueController = TextEditingController();
 
@@ -26,7 +26,7 @@ class OverrideState extends State<Override> {
     final key = keyController.text;
     final value = valueController.text;
 
-    if (key.isEmpty) {
+    if (key.isEmpty || value.isEmpty) {
       return;
     }
 
@@ -58,14 +58,14 @@ class OverrideState extends State<Override> {
   @override
   Widget build(BuildContext context) => Row(
     children: [
-      IconButton(
-        tooltip: AppLocalizations.of(context)!.deleteOverride,
-        icon: const Icon(Icons.delete),
-        onPressed: onDelete,
-      ),
       buildKeyTextField(),
       const SizedBox(width: 8),
       buildValueTextField(),
+      IconButton(
+        tooltip: AppLocalizations.of(context)!.removeParameter,
+        icon: const Icon(Icons.delete),
+        onPressed: onDelete,
+      ),
     ],
   );
 
