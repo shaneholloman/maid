@@ -106176,8 +106176,12 @@ p.ak(new A.amr(a))
 case 1:return A.D(q,r)}})
 return A.E($async$wR,r)},
 R(a){return new A.dk(this.garM(),null,this.a.c,null)},
-arN(a,b){var s=this,r=null,q=A.aUX(A.aNN(B.ay,r,r,s.a.c.e)),p=A.aUX(A.aNN(B.aC,r,r,s.a.c.e)),o=s.a.c.f,n=s.ZO(),m=A.a([B.LJ,B.M_,B.M8,B.LW],t.a9)
-return new A.DR(n,A.a0(["/settings",new A.aml(s),"/chat",new A.amm(s),"/about",new A.amn(),"/huggingface",new A.amo(s)],t.N,t.y_),"Maid",q,p,o,s.a.c.r,m,B.to,!1,r)},
+arN(a,b){var s=this,r=null,q=A.aUX(A.aNN(B.ay,r,r,s.a.c.e)),p=A.aUX(A.aNN(B.aC,r,r,s.a.c.e)),o=s.a.c.f,n=s.ZO(),m=A.a([B.LJ,B.M_,B.M8,B.LW],t.a9),l=A.r(t.N,t.y_)
+l.l(0,"/settings",new A.aml(s))
+l.l(0,"/chat",new A.amm(s))
+l.l(0,"/about",new A.amn())
+l.l(0,"/huggingface",new A.amo(s))
+return new A.DR(n,l,"Maid",q,p,o,s.a.c.r,m,B.to,!1,r)},
 ZO(){var s=this.d,r=this.a
 return new A.CP(s,r.d,r.c,null)}}
 A.amq.prototype={
