@@ -104555,7 +104555,7 @@ gl1(){return"Code"},
 l4(a){return"Copy "+a},
 lj(a){return a+" copied to clipboard!"},
 glO(){return"Warning"},
-glw(){return"This model is intentionally designed to produce NSFW content. This may include explicit sexual or violent content involving torture, rape, murder and / or sexually devient behaviour. If you are sensitive to such topics, or the discussion of such topics violates local laws, DO NOT PROCEED."}}
+glw(){return"This model is intentionally designed to produce NSFW content. This may include explicit sexual or violent content involving torture, rape, murder and / or sexually deviant behaviour. If you are sensitive to such topics, or the discussion of such topics violates local laws, DO NOT PROCEED."}}
 A.Oc.prototype={
 gjM(){return"Espa\xf1ol"},
 glp(){return"Idioma"},
