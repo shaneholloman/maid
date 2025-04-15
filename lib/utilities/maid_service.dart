@@ -14,7 +14,7 @@ class MaidService {
   static const String attributeOs = 'os';
 
   /// The "UUID" attribute.
-  static const String attributeUuid = 'uuid';
+  static const String attributeId = 'id';
 
   /// The default app service.
   static late BonsoirService _service;
@@ -52,7 +52,7 @@ class MaidService {
       name: name,
       type: '_$type._$protocol',
       port: port,
-      attributes: {attributeOs: os, attributeUuid: math.Random().nextInt(2^62).toUnsigned(20).toRadixString(16)},
+      attributes: {attributeOs: os, attributeId: math.Random().nextInt(2^62).toUnsigned(20).toRadixString(16)},
     );
   }
 }
