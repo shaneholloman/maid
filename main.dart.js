@@ -28622,16 +28622,15 @@ q=b==null?new A.dw(Date.now(),0,!1):b
 r=new A.md(p,s,d,e,q,r,a,$.aA())
 if(d!=null){d.a.push(r)
 d.w=r}return r},
-aP_(a,b,c){var s,r,q,p,o,n,m={}
-m.a=b
-if(b==null)m.a=new A.cU(J.o(J.aTn(a,new A.ael(),new A.aem()),"id"),t.kK)
-s=J.aTn(a,new A.aen(m),new A.aeo(m))
-r=m.a
+aP_(a,b,c){var s,r,q,p,o={}
+o.a=b
+if(b==null)o.a=new A.cU(J.o(J.aTn(a,new A.ael(),new A.aem()),"id"),t.kK)
+s=J.aTn(a,new A.aen(o),new A.aeo(o))
+r=o.a
 q=A.b4n(s.h(0,"role"))
 p=A.qX(s.h(0,"content"),A.aUk(s.h(0,"created_at")),r,c,q,A.aUk(s.h(0,"updated_at")))
-for(r=J.bu(s.h(0,"children")),q=t.kK,o=p.a;r.t();){n=A.aP_(a,new A.cU(r.gK(),q),p)
-o.push(n)
-p.w=n}if(s.h(0,"current_child")!=null)p.w=B.d.vN(o,new A.aep(s),new A.aeq(s))
+for(r=J.bu(s.h(0,"children")),q=t.kK;r.t();)A.aP_(a,new A.cU(r.gK(),q),p)
+if(s.h(0,"current_child")!=null)p.w=B.d.vN(p.a,new A.aep(s),new A.aeq(s))
 return p},
 b4p(a){var s,r=A.a([],t.Bt),q=a
 do{switch(q.d.a){case 0:s="user"
