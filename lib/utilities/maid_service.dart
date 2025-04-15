@@ -48,7 +48,6 @@ class MaidService {
       name = 'Flutter';
       os = 'Unknown';
     }
-    name += ' Bonsoir Demo';
 
     _service = BonsoirService(
       name: name,
