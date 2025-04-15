@@ -1,8 +1,10 @@
 part of 'package:maid/main.dart';
 
 class MaidService {
+  static String get type => '_$typeName._$protocol';
+
   /// The service type name.
-  static const String type = 'maid_app_service';
+  static const String typeName = 'MaidService';
 
   /// The service type.
   static const String protocol = 'tcp';
@@ -13,7 +15,7 @@ class MaidService {
   /// The "OS" attribute.
   static const String attributeOs = 'os';
 
-  /// The "UUID" attribute.
+  /// The "ID" attribute.
   static const String attributeId = 'id';
 
   /// The default app service.
@@ -50,7 +52,7 @@ class MaidService {
 
     _service = BonsoirService(
       name: name,
-      type: '_$type._$protocol',
+      type: type,
       port: port,
       attributes: {attributeOs: os, attributeId: math.Random().nextInt(2^62).toUnsigned(20).toRadixString(16)},
     );
