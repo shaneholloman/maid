@@ -5,6 +5,7 @@ import 'dart:io';
 import 'dart:math' as math;
 
 import 'package:anthropic_sdk_dart/anthropic_sdk_dart.dart' as anthropic;
+import 'package:bonsoir/bonsoir.dart';
 import 'package:intl/intl.dart';
 import 'package:crypto/crypto.dart';
 import 'package:yaml/yaml.dart';
@@ -38,6 +39,7 @@ part 'controllers/chat_controller.dart';
 part 'utilities/chat_messages_extension.dart';
 part 'utilities/chat_messages.dart';
 part 'utilities/huggingface_manager.dart';
+part 'utilities/maid_service.dart';
 part 'utilities/target_platform_extension.dart';
 part 'utilities/string_extension.dart';
 part 'utilities/theme_mode_extension.dart';
