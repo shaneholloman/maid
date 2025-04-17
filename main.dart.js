@@ -29498,7 +29498,7 @@ p=B.F.ih(0,q==null?"{}":q,null)
 switch(a){case"llama_cpp":o=A.aY7()
 n=J.Z(p)
 o.b=n.h(p,"model")
-n=n.h(p,"overrides")
+n=n.h(p,"parameters")
 o.c=n==null?A.u(t.N,t.z):n
 o.aK(0)
 o.W()
@@ -29510,7 +29510,7 @@ m=t.z
 o=new A.Hc(null,null,null,A.u(n,m),o,$.ax())
 l=J.Z(p)
 o.b=l.h(p,"model")
-k=l.h(p,"overrides")
+k=l.h(p,"parameters")
 o.c=k==null?A.u(n,m):k
 o.z=l.h(p,"base_url")
 o.Q=l.h(p,"api_key")
@@ -110911,7 +110911,7 @@ q.W()
 return A.x(null,r)}})
 return A.y($async$a6,r)}}
 A.Cq.prototype={
-rK(){return A.a0(["model",this.b,"overrides",this.c],t.N,t.z)},
+rK(){return A.a0(["model",this.b,"parameters",this.c],t.N,t.z)},
 aK(a){var s=0,r=A.z(t.H),q=this,p,o
 var $async$aK=A.v(function(b,c){if(b===1)return A.w(c,r)
 while(true)switch(s){case 0:s=2
@@ -110940,10 +110940,10 @@ case 4:return A.x(null,r)}})
 return A.y($async$a6,r)}}
 A.ef.prototype={
 rK(){var s=this
-return A.a0(["model",s.b,"overrides",s.c,"base_url",s.z,"api_key",s.Q,"custom_model",s.as],t.N,t.z)},
+return A.a0(["model",s.b,"parameters",s.c,"base_url",s.z,"api_key",s.Q,"custom_model",s.as],t.N,t.z)},
 Qm(a){var s,r=this,q=J.Z(a)
 r.b=q.h(a,"model")
-s=q.h(a,"overrides")
+s=q.h(a,"parameters")
 r.c=s==null?A.u(t.N,t.z):s
 r.z=q.h(a,"base_url")
 r.Q=q.h(a,"api_key")
@@ -111348,7 +111348,7 @@ case 6:case 1:return A.x(q,r)
 case 2:return A.w(o.at(-1),r)}})
 return A.y($async$hf,r)},
 rK(){var s=this
-return A.a0(["model",s.b,"overrides",s.c,"base_url",s.z,"api_key",s.Q,"search_local_network",s.fx],t.N,t.z)},
+return A.a0(["model",s.b,"parameters",s.c,"base_url",s.z,"api_key",s.Q,"search_local_network",s.fx],t.N,t.z)},
 uO(a){return A.a_(a,B.h,t.J).gkv()},
 gGc(){return this.z!=null||this.fx===!0}}
 A.axw.prototype={
