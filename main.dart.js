@@ -111708,7 +111708,7 @@ i=$.ek().b
 i===$&&A.b()
 i=i.Ql("chat_messages")
 g=J.a_(h)
-g=A.a0(["id",g.h(h,"id"),"user_id",k,"role",g.h(h,"role"),"content",g.h(h,"content"),"parent",g.h(h,"parent"),"created_at",g.h(h,"create_time"),"updated_at",g.h(h,"update_time")],n,l)
+g=A.a0(["id",g.h(h,"id"),"user_id",k,"role",g.h(h,"role"),"content",g.h(h,"content"),"parent",g.h(h,"parent"),"create_time",g.h(h,"create_time"),"update_time",g.h(h,"update_time")],n,l)
 f=A.dR(null,null,n,n)
 f.T(0,i.b)
 f.l(0,"Prefer","resolution=merge-duplicates")
