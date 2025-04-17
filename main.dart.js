@@ -29605,7 +29605,8 @@ if(b==null)i.a=new A.d2(J.j(J.b0D(a,new A.aj4(),new A.aj5()),"id"),t.kK)
 s=J.b0D(a,new A.aj6(i),new A.aj7(i))
 r=A.a([],t.SU)
 for(q=J.a_(s),p=J.b0(q.h(s,"children")),o=t.kK;p.u();)r.push(A.aj3(a,new A.d2(p.gL(p),o)))
-n=q.h(s,"current_child")!=null?B.d.wX(r,new A.aj8(s),new A.aj9(s)):null
+if(q.h(s,"current_child")!=null)n=B.d.wX(r,new A.aj8(s),new A.aj9(s))
+else n=r.length!==0?B.d.gal(r):null
 m=typeof q.h(s,k)=="string"?A.Ed(q.h(s,k)):null
 l=typeof q.h(s,j)=="string"?A.Ed(q.h(s,j)):null
 p=i.a
