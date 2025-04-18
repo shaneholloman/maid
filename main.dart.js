@@ -111759,7 +111759,7 @@ case 6:q=9
 a0=a0.b.as
 a0===$&&A.b()
 s=12
-return A.t(a0.xg("avatars").H0(0,n.a+".jpg"),$async$ju)
+return A.t(a0.xg("user-images").H0(0,n.a+".jpg"),$async$ju)
 case 12:m=a5
 o.a=m
 o.aH(0)
@@ -111846,7 +111846,7 @@ g=d.aBM(o,B.to)
 d=e.b.as
 d===$&&A.b()
 s=8
-return A.t(d.xg("avatars").Jm(p.a+".jpg",g,B.S5),$async$aH)
+return A.t(d.xg("user-images").Jm(p.a+".jpg",g,B.S5),$async$aH)
 case 8:case 7:s=4
 break
 case 5:f.G(0,"userImage")
